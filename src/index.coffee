@@ -8,12 +8,20 @@ module.exports = (options) ->
 
   validateTypes options, optionTypes
 
-  { keys, values, needsValue } = options
+  { keys, values, ignored, needsValue } = options
 
   needsValue ?= no
 
+  if isType ignored, Array
+    ignored = sync.reduce ignored, {}, (results, key) ->
+      results[key] = yes
+      results
+
   unless isType keys, Array
     keys = Object.keys keys
+
+  if isType ignored, Object
+    keys = sync.filter keys, (key) -> not ignored[key]
 
   unless isType values, Array
     values = sync.reduce keys, [], (results, key) ->
@@ -28,4 +36,5 @@ module.exports = (options) ->
 optionTypes =
   keys: Kind(Object)
   values: Kind(Object)
+  ignored: [ Array, Void ]
   needsValue: [ Boolean, Void ]

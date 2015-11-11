@@ -7,14 +7,25 @@ ref = require("type-utils"), isType = ref.isType, validateTypes = ref.validateTy
 sync = require("io").sync;
 
 module.exports = function(options) {
-  var keys, needsValue, values;
+  var ignored, keys, needsValue, values;
   validateTypes(options, optionTypes);
-  keys = options.keys, values = options.values, needsValue = options.needsValue;
+  keys = options.keys, values = options.values, ignored = options.ignored, needsValue = options.needsValue;
   if (needsValue == null) {
     needsValue = false;
   }
+  if (isType(ignored, Array)) {
+    ignored = sync.reduce(ignored, {}, function(results, key) {
+      results[key] = true;
+      return results;
+    });
+  }
   if (!isType(keys, Array)) {
     keys = Object.keys(keys);
+  }
+  if (isType(ignored, Object)) {
+    keys = sync.filter(keys, function(key) {
+      return !ignored[key];
+    });
   }
   if (!isType(values, Array)) {
     values = sync.reduce(keys, [], function(results, key) {
@@ -35,6 +46,7 @@ module.exports = function(options) {
 optionTypes = {
   keys: Kind(Object),
   values: Kind(Object),
+  ignored: [Array, Void],
   needsValue: [Boolean, Void]
 };
 
