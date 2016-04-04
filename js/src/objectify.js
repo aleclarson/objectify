@@ -1,10 +1,15 @@
-var Kind, Void, isType, optionTypes, ref, sync, validateTypes;
+var Kind, Maybe, isType, optionTypes, ref, sync, validateTypes;
 
-require("lotus-require");
+ref = require("type-utils"), isType = ref.isType, validateTypes = ref.validateTypes, Kind = ref.Kind, Maybe = ref.Maybe;
 
-ref = require("type-utils"), isType = ref.isType, validateTypes = ref.validateTypes, Kind = ref.Kind, Void = ref.Void;
+sync = require("sync");
 
-sync = require("io").sync;
+optionTypes = {
+  keys: Kind(Object),
+  values: Kind(Object),
+  ignored: Maybe(Array),
+  needsValue: Maybe(Boolean)
+};
 
 module.exports = function(options) {
   var ignored, keys, needsValue, values;
@@ -43,11 +48,4 @@ module.exports = function(options) {
   });
 };
 
-optionTypes = {
-  keys: Kind(Object),
-  values: Kind(Object),
-  ignored: [Array, Void],
-  needsValue: [Boolean, Void]
-};
-
-//# sourceMappingURL=../../map/src/index.map
+//# sourceMappingURL=../../map/src/objectify.map

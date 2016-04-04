@@ -1,10 +1,9 @@
 {
   "name": "objectify",
   "version": "1.0.0",
-  "main": "./js/src/index",
+  "main": "./js/src/objectify",
   "dependencies": {
-    "io": "aleclarson/io#1.0.0",
-    "lotus-require": "aleclarson/lotus-require#1.0.0",
+    "sync": "aleclarson/sync#1.0.0",
     "type-utils": "aleclarson/type-utils#1.0.0"
   }
 }

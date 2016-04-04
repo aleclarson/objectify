@@ -1,8 +1,13 @@
 
-require "lotus-require"
+{ isType, validateTypes, Kind, Maybe } = require "type-utils"
 
-{ isType, validateTypes, Kind, Void } = require "type-utils"
-{ sync } = require "io"
+sync = require "sync"
+
+optionTypes =
+  keys: Kind(Object)
+  values: Kind(Object)
+  ignored: Maybe(Array)
+  needsValue: Maybe(Boolean)
 
 module.exports = (options) ->
 
@@ -32,9 +37,3 @@ module.exports = (options) ->
     value = values[i]
     obj[key] = value unless needsValue and value is undefined
     obj
-
-optionTypes =
-  keys: Kind(Object)
-  values: Kind(Object)
-  ignored: [ Array, Void ]
-  needsValue: [ Boolean, Void ]
