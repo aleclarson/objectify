@@ -1,19 +1,31 @@
-var Kind, Maybe, isType, optionTypes, ref, sync, validateTypes;
+var Kind, Maybe, assertTypes, isType, optionTypes, sync;
 
-ref = require("type-utils"), isType = ref.isType, validateTypes = ref.validateTypes, Kind = ref.Kind, Maybe = ref.Maybe;
+require("isDev");
+
+assertTypes = require("assertTypes");
+
+isType = require("isType");
+
+Maybe = require("Maybe");
+
+Kind = require("Kind");
 
 sync = require("sync");
 
-optionTypes = {
-  keys: Kind(Object),
-  values: Kind(Object),
-  ignored: Maybe(Array),
-  needsValue: Maybe(Boolean)
-};
+if (isDev) {
+  optionTypes = {
+    keys: Kind(Object),
+    values: Kind(Object),
+    ignored: Maybe(Array),
+    needsValue: Maybe(Boolean)
+  };
+}
 
 module.exports = function(options) {
   var ignored, keys, needsValue, values;
-  validateTypes(options, optionTypes);
+  if (isDev) {
+    assertTypes(options, optionTypes);
+  }
   keys = options.keys, values = options.values, ignored = options.ignored, needsValue = options.needsValue;
   if (needsValue == null) {
     needsValue = false;

@@ -1,17 +1,22 @@
 
-{ isType, validateTypes, Kind, Maybe } = require "type-utils"
+require "isDev"
 
+assertTypes = require "assertTypes"
+isType = require "isType"
+Maybe = require "Maybe"
+Kind = require "Kind"
 sync = require "sync"
 
-optionTypes =
-  keys: Kind(Object)
-  values: Kind(Object)
-  ignored: Maybe(Array)
-  needsValue: Maybe(Boolean)
+if isDev
+  optionTypes =
+    keys: Kind(Object)
+    values: Kind(Object)
+    ignored: Maybe(Array)
+    needsValue: Maybe(Boolean)
 
 module.exports = (options) ->
 
-  validateTypes options, optionTypes
+  assertTypes options, optionTypes if isDev
 
   { keys, values, ignored, needsValue } = options
 
