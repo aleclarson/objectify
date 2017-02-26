@@ -1,9 +1,8 @@
 
-require "isDev"
-
 assertTypes = require "assertTypes"
 isType = require "isType"
 Maybe = require "Maybe"
+isDev = require "isDev"
 Kind = require "Kind"
 sync = require "sync"
 

@@ -1,13 +1,20 @@
 {
   "name": "objectify",
-  "version": "1.0.0",
-  "main": "./js/src/objectify",
+  "version": "1.0.1",
+  "main": "js/objectify",
+  "plugins": [
+    "lotus-coffee"
+  ],
+  "scripts": {
+    "build": "coffee-build -v 1.11.x -b -o js src",
+    "postinstall": "npm run build"
+  },
   "dependencies": {
-    "Kind": "aleclarson/Kind#1.0.0",
-    "Maybe": "aleclarson/Maybe#1.0.1",
-    "assertTypes": "aleclarson/assertTypes#2.0.0",
-    "isDev": "aleclarson/isDev#1.0.0",
-    "isType": "aleclarson/isType#1.0.0",
-    "sync": "aleclarson/sync#1.0.0"
+    "Kind": "aleclarson/Kind#1.0.1",
+    "Maybe": "aleclarson/Maybe#1.1.0",
+    "assertTypes": "aleclarson/assertTypes#2.0.1",
+    "isDev": "aleclarson/isDev#2.0.0",
+    "isType": "aleclarson/isType#1.0.1",
+    "sync": "aleclarson/sync#1.0.2"
   }
 }
