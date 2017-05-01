@@ -1,0 +1,13 @@
+{
+  "name": "objectify",
+  "version": "1.0.2",
+  "main": "js/objectify",
+  "dependencies": {
+    "Kind": "aleclarson/Kind#1.0.2",
+    "Maybe": "aleclarson/Maybe#1.1.1",
+    "assertTypes": "aleclarson/assertTypes#2.0.2",
+    "isDev": "aleclarson/isDev#2.0.0",
+    "isType": "aleclarson/isType#1.0.2",
+    "sync": "aleclarson/sync#1.0.3"
+  }
+}
