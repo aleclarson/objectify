@@ -1,5 +1,5 @@
 
-# objectify v1.0.1
+# objectify v1.0.2
 
 ```coffee
 objectify = require "objectify"
